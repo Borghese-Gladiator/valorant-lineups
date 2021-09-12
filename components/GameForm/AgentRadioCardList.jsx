@@ -63,7 +63,7 @@ export default function Example() {
         { value: "reyna", imgPath: "/img/agents/icons/Reyna_icon.png" },
         { value: "sage", imgPath: "/img/agents/icons/Sage_icon.png" },
         { value: "skye", imgPath: "/img/agents/icons/Skye_icon.png" },
-        { value: "sova", imgPath: "/img/agents/icons/SOva_icon.png" },
+        { value: "sova", imgPath: "/img/agents/icons/Sova_icon.png" },
         { value: "viper", imgPath: "/img/agents/icons/Viper_icon.png" },
         { value: "yoru", imgPath: "/img/agents/icons/Yoru_icon.png" }
       ].map(({ value, imgPath }) => {

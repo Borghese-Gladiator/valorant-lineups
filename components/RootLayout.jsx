@@ -1,17 +1,20 @@
+import React from "react";
+import { Container, Box, useDisclosure } from '@chakra-ui/react';
+// Custom Components
 import Header from "./Header";
 import GameForm from "./GameForm";
-import { Container, Box } from '@chakra-ui/react';
+import Sidebar from "./Sidebar";
 
 export default function RootLayout({ children }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+
   return (
     <div>
-      <Header />
+      <Header btnRef={btnRef} onOpen={onOpen} />
+      <Sidebar btnRef={btnRef} isOpen={isOpen} onClose={onClose} />
       <Box p={8}>
-        <GameForm />
         <Container maxW="xl" centerContent>
-          There are many benefits to a joint design and development system. Not only
-          does it bring benefits to the design team.
-
           <main>
             {children}
           </main>

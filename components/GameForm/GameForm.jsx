@@ -1,21 +1,30 @@
 import { useState } from "react";
 import { Grid, GridItem, Heading, Radio, RadioGroup, Stack, Box } from "@chakra-ui/react"
 // Custom components
-import AgentList from './AgentList';
+import AgentRadioCardList from './AgentRadioCardList';
+import MapRadioCardList from './MapRadioCardList';
+import SiteRadioCardList from "./SiteRadioCardList";
 
 export default function GameForm() {
   const [attackDefense, setAttackDefense] = useState("ATTACK");
-  const [site, setSite] = useState("A");
+  const [map, setMap] = useState("ascent");
+  // const [site, setSite] = useState("A");
 
   return (
     <div>
       <Grid
         h="200px"
-        templateRows="repeat(2, 10fr)"
-        templateColumns="repeat(5, 1fr)"
+        templateRows="repeat(3, 10fr)"
+        templateColumns="repeat(2, 1fr)"
         gap={4}
       >
-        <GridItem rowSpan={1} colSpan={1}>
+        <GridItem colSpan={2}>
+          <Heading as="h4" size="md">
+            Map
+          </Heading>
+          <MapRadioCardList setMap={setMap} />
+        </GridItem>
+        <GridItem colSpan={1}>
           <Box p={1}>
             <Heading as="h4" size="md">
               Side
@@ -29,26 +38,19 @@ export default function GameForm() {
             </RadioGroup>
           </Box>
         </GridItem>
-        <GridItem rowSpan={1} colSpan={1} bg="papayawhip" >
+        <GridItem colSpan={1} bg="papayawhip" >
           <Box p={1}>
             <Heading as="h4" size="md">
               Site
             </Heading>
-            <RadioGroup onChange={setSite} value={site}>
-              <Stack direction="row">
-                <Radio value="A">A</Radio>
-                <Radio value="B">B</Radio>
-                <Radio value="C">C</Radio>
-                <Radio value="ALL">All</Radio>
-              </Stack>
-            </RadioGroup>
           </Box>
+          <SiteRadioCardList map={map} />
         </GridItem>
-        <GridItem colSpan={4}>
+        <GridItem colSpan={2}>
           <Heading as="h4" size="md">
             Agents
           </Heading>
-          <AgentList />
+          <AgentRadioCardList />
         </GridItem>
       </Grid>
     </div>
