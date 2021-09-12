@@ -38,13 +38,13 @@ function RadioCard(props) {
 }
 
 // Step 2: Use the `useRadioGroup` hook to control a group of custom radios.
-export default function Example({ setMap }) {
+export default function MapRadioCardList({ setMap }) {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "framework",
     defaultValue: "ascent",
     onChange: (value) => {
       setMap(value);
-      console.log(value)
+      console.log(`MAP SET TO: ${value}`);
     },
   })
 

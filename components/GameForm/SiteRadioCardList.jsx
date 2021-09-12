@@ -3,6 +3,7 @@ import { useRadioGroup, HStack, Radio } from "@chakra-ui/react"
 export default function SiteRadioCardList({ map }) {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "map",
+    defaultValue: "A",
     onChange: (value) => console.log(value),
   })
 
@@ -18,7 +19,6 @@ export default function SiteRadioCardList({ map }) {
     "icebox": ["A", "B", "MID"],
     "split": ["A", "B", "MID"]
   };
-  console.log(siteDict[map])
 
   return (
     <HStack {...group}>

@@ -6,14 +6,12 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  useDisclosure,
-  Button,
-  Input
+  Button
 } from "@chakra-ui/react";
 // Custom Components
 import GameForm from "./GameForm";
 
-export default function DrawerExample({ isOpen, onClose, btnRef }) {
+export default function DrawerExample({ isOpen, onClose, btnRef, attackDefense, setAttackDefense, map, setMap, agent, setAgent, }) {
   return (
     <>
       <Drawer
@@ -29,7 +27,14 @@ export default function DrawerExample({ isOpen, onClose, btnRef }) {
           <DrawerHeader></DrawerHeader>
 
           <DrawerBody>
-            <GameForm />
+            <GameForm 
+        attackDefense={attackDefense}
+        setAttackDefense={setAttackDefense}
+        map={map}
+        setMap={setMap}
+        agent={agent}
+        setAgent={setAgent}
+        />
           </DrawerBody>
 
           <DrawerFooter>

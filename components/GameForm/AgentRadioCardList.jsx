@@ -38,11 +38,14 @@ function RadioCard(props) {
 }
 
 // Step 2: Use the `useRadioGroup` hook to control a group of custom radios.
-export default function Example() {
+export default function AgentRadioCardList({ setAgent }) {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "framework",
     defaultValue: "viper",
-    onChange: (value) => console.log(value),
+    onChange: (value) => {
+      setAgent(value);
+      console.log(`AGENT SET TO: ${value}`);
+    },
   })
 
   const group = getRootProps()

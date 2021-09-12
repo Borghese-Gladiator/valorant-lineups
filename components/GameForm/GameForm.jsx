@@ -5,11 +5,7 @@ import AgentRadioCardList from './AgentRadioCardList';
 import MapRadioCardList from './MapRadioCardList';
 import SiteRadioCardList from "./SiteRadioCardList";
 
-export default function GameForm() {
-  const [attackDefense, setAttackDefense] = useState("ATTACK");
-  const [map, setMap] = useState("ascent");
-  // const [site, setSite] = useState("A");
-
+export default function GameForm({ attackDefense, setAttackDefense, map, setMap, agent, setAgent }) {
   return (
     <div>
       <Grid
@@ -31,8 +27,8 @@ export default function GameForm() {
             </Heading>
             <RadioGroup onChange={setAttackDefense} value={attackDefense}>
               <Stack direction="row">
-                <Radio value="ATTACK">Attack</Radio>
-                <Radio value="DEFENSE">Defense</Radio>
+                <Radio value="attack">Attack</Radio>
+                <Radio value="defense">Defense</Radio>
               </Stack>
             </RadioGroup>
           </Box>
@@ -47,7 +43,7 @@ export default function GameForm() {
           <Heading as="h4" size="md">
             Agents
           </Heading>
-          <AgentRadioCardList />
+          <AgentRadioCardList setAgent={setAgent} />
         </GridItem>
       </Grid>
     </div>
