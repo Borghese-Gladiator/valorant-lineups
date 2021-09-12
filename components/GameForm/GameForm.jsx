@@ -27,23 +27,20 @@ export default function GameForm() {
         <GridItem colSpan={1}>
           <Box p={1}>
             <Heading as="h4" size="md">
-              Side
+              Position
             </Heading>
             <RadioGroup onChange={setAttackDefense} value={attackDefense}>
               <Stack direction="row">
                 <Radio value="ATTACK">Attack</Radio>
                 <Radio value="DEFENSE">Defense</Radio>
-                <Radio value="ALL">All</Radio>
               </Stack>
             </RadioGroup>
           </Box>
         </GridItem>
-        <GridItem colSpan={1} bg="papayawhip" >
-          <Box p={1}>
-            <Heading as="h4" size="md">
-              Site
-            </Heading>
-          </Box>
+        <GridItem colSpan={1}>
+          <Heading as="h4" size="md">
+            Site
+          </Heading>
           <SiteRadioCardList map={map} />
         </GridItem>
         <GridItem colSpan={2}>

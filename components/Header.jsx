@@ -47,6 +47,17 @@ export default function Header({ btnRef, onOpen }) {
               Valorant Lineups
             </Heading>
           </HStack>
+          <Button
+            variant={'solid'}
+            colorScheme={'teal'}
+            size={'sm'}
+            mr={4}
+            ref={btnRef} colorScheme="teal" onClick={onOpen}
+          >
+            Select Lineup
+          </Button>
+        </HStack>
+        <Flex alignItems={'center'}>
           <HStack
             as={'nav'}
             spacing={4}
@@ -55,17 +66,6 @@ export default function Header({ btnRef, onOpen }) {
               <NavLink key={link}>{link}</NavLink>
             ))}
           </HStack>
-        </HStack>
-        <Flex alignItems={'center'}>
-          <Button
-            variant={'solid'}
-            colorScheme={'teal'}
-            size={'sm'}
-            mr={4}
-            ref={btnRef} colorScheme="teal" onClick={onOpen}
-          >
-            Filter
-          </Button>
         </Flex>
       </Flex>
     </Box>

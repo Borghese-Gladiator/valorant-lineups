@@ -11,7 +11,7 @@ function RadioCard(props) {
 
   return (
     <WrapItem>
-      <Box as="label">
+      <Box as="label" style={{background: "#C9CCD5"}}>
         <input {...input} />
         <Box
           {...checkbox}
@@ -41,7 +41,7 @@ function RadioCard(props) {
 export default function Example() {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "framework",
-    defaultValue: "react",
+    defaultValue: "viper",
     onChange: (value) => console.log(value),
   })
 

@@ -26,7 +26,7 @@ export default function DrawerExample({ isOpen, onClose, btnRef }) {
         <DrawerOverlay />
         <DrawerContent style={{background: "#93B5C6"}}>
           <DrawerCloseButton />
-          <DrawerHeader>Select</DrawerHeader>
+          <DrawerHeader></DrawerHeader>
 
           <DrawerBody>
             <GameForm />
