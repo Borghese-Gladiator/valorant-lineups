@@ -2,21 +2,14 @@ import fs from 'fs'
 import path from 'path'
 
 export default (req, res) => {
-  const { agent, map, attackDefense } = req.body;
-  console.log([agent, map, attackDefense]);
+  const { agent, map, attackDefense } = req.query;
+  const dirFilterRelativePath = path.join('img', 'lineups', agent, map, attackDefense);
+  const dirAbsolutePath = path.resolve('./public', dirFilterRelativePath);
+  const filenames = fs.readdirSync(dirAbsolutePath);
+  const imagesList = filenames.map(name => (path.join(dirFilterRelativePath, name)).replace(/\\/g, '/'))
 
-  const dirRelativeToPublicFolder = path.join('img', agent, map, attackDefense);
-  console.log(dirRelativeToPublicFolder);
-
-  const dir = path.resolve('./public', dirRelativeToPublicFolder);
-  console.log(dir);
-
-  const filenames = fs.readdirSync(dir);
-
-  const images = filenames.map(name => path.join('/', dirRelativeToPublicFolder, name))
-
-  res.statusCode = 200
-  res.json(images);
+  res.statusCode = 200;
+  res.json(imagesList);
 }
 
 /*

@@ -20,12 +20,7 @@ export default function HomePage() {
 
   // Fetch Data
   const fetcher = (url) => {
-    url.search = new URLSearchParams({
-      map: map,
-      agent: agent,
-      attackDefense: attackDefense
-    })
-    fetch(url)
+    fetch(`${url}?map=${map}&agent=${agent}&attackDefense=${attackDefense}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
