@@ -1,9 +1,8 @@
 import { useRef, useState, useEffect } from "react";
-import { Container, Box, Image, useDisclosure } from '@chakra-ui/react';
+import { Container, Box, Center, Image, Wrap, WrapItem, Heading, useDisclosure } from '@chakra-ui/react';
 // Custom Components
 import RootLayout from "../components/RootLayout";
-// API
-import useSwr from 'swr';
+import { capitalizeFirstLetter } from '../utils/utils';
 
 export default function HomePage() {
   // Sidebar data
@@ -16,11 +15,18 @@ export default function HomePage() {
   const [agent, setAgent] = useState("viper");
 
   // Main Display
-  const [imgList, setImgList] = useState([]);
-  
+  const [imgList, setImgList] = useState([
+    "/img/lineups/viper/ascent/attack/a-smoke-end.png",
+    "/img/lineups/viper/ascent/attack/a-smoke-start.png",
+    "/img/lineups/viper/ascent/attack/a-wall.png",
+    "/img/lineups/viper/ascent/attack/b-smoke.png",
+    "/img/lineups/viper/ascent/attack/b-wall.png",
+    "/img/lineups/viper/ascent/attack/catwalk-wall.png",
+    "/img/lineups/viper/ascent/attack/mid-wall.png"
+  ]);
+
   const clickFilter = () => {
     const url = "/api/pathfinder";
-    const map = "bind";
     fetch(`${url}?map=${map}&agent=${agent}&attackDefense=${attackDefense}`)
       .then(response => response.json())
       .then(data => {
@@ -39,17 +45,23 @@ export default function HomePage() {
       agent={agent}
       setAgent={setAgent}
     >
-      
       <Box p={8}>
-        <Container maxW="xl" centerContent>
-          <main>
+        <main>
+          <Center>
+            <Heading as="h4" size="md">
+              {capitalizeFirstLetter(map)}
+            </Heading>
+          </Center>
+          <Wrap>
             {imgList.map((imgPath, idx) => {
               return (
-                <Image src={imgPath} alt="" key={`lineup-img-${idx}`}/>
+                <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
+                  <Image src={imgPath} alt="" />
+                </WrapItem>
               )
             })}
-          </main>
-        </Container>
+          </Wrap>
+        </main>
       </Box>
     </RootLayout>
   )
