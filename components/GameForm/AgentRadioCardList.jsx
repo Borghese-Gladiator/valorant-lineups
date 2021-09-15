@@ -58,7 +58,7 @@ export default function AgentRadioCardList({ setAgent }) {
         { value: "brimstone", imgPath: "/img/agents/icons/Brimstone_icon.png" },
         { value: "cypher", imgPath: "/img/agents/icons/Cypher_icon.png" },
         { value: "jett", imgPath: "/img/agents/icons/Jett_icon.png" },
-        { value: "kayo", imgPath: "/img/agents/icons/Kayo_icon.png" },
+        { value: "kayo", imgPath: "/img/agents/icons/KAYO_icon.png" },
         { value: "killjoy", imgPath: "/img/agents/icons/Killjoy_icon.png" },
         { value: "omen", imgPath: "/img/agents/icons/Omen_icon.png" },
         { value: "phoenix", imgPath: "/img/agents/icons/Phoenix_icon.png" },
