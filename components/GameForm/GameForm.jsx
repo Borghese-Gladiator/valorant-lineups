@@ -28,7 +28,7 @@ export default function GameForm({ attackDefense, setAttackDefense, map, setMap,
             <RadioGroup onChange={setAttackDefense} value={attackDefense}>
               <Stack direction="row">
                 <Radio value="attack">Attack</Radio>
-                <Radio value="defense">Defense</Radio>
+                <Radio value="defend">Defend</Radio>
               </Stack>
             </RadioGroup>
           </Box>
