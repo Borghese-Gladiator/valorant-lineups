@@ -51,16 +51,16 @@ export default function HomePage() {
             <Heading as="h4" size="md">
               {capitalizeFirstLetter(map)}
             </Heading>
+            <Wrap justify="center" align="center">
+              {imgList.map((imgPath, idx) => {
+                return (
+                  <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
+                    <Image src={imgPath} alt="" />
+                  </WrapItem>
+                )
+              })}
+            </Wrap>
           </Center>
-          <Wrap>
-            {imgList.map((imgPath, idx) => {
-              return (
-                <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
-                  <Image src={imgPath} alt="" />
-                </WrapItem>
-              )
-            })}
-          </Wrap>
         </main>
       </Box>
     </RootLayout>
