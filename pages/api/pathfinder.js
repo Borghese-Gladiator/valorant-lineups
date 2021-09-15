@@ -8,7 +8,7 @@ import path from 'path'
  * @param response
  * @returns {array} list of paths
  */ 
-export default (req, res) => {
+export default function handler(req, res) {
   const { agent, map, attackDefense } = req.query;
   const dirFilterRelativePath = path.join('img', 'lineups', agent, map, attackDefense);
   const dirAbsolutePath = path.resolve('./public', dirFilterRelativePath);

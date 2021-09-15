@@ -52,7 +52,8 @@ export default function Header({ btnRef, onOpen }) {
             colorScheme={'teal'}
             size={'sm'}
             mr={4}
-            ref={btnRef} colorScheme="teal" onClick={onOpen}
+            ref={btnRef}
+            onClick={onOpen}
           >
             Select Lineup
           </Button>
