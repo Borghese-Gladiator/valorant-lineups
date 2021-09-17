@@ -1,8 +1,8 @@
-import { useRef, useState, useEffect } from "react";
-import { Container, Box, Center, Image, Wrap, WrapItem, Heading, useDisclosure } from '@chakra-ui/react';
+import { useRef, useState } from "react";
+import { Box, Center, Image, Wrap, WrapItem, Heading, useDisclosure } from '@chakra-ui/react';
 // Custom Components
 import RootLayout from "../components/RootLayout";
-import { capitalizeFirstLetter } from '../utils/utils';
+import { capitalizeFirstLetter, getImagesConstant } from '../utils/utils';
 
 export default function HomePage() {
   // Sidebar data
@@ -15,15 +15,7 @@ export default function HomePage() {
   const [agent, setAgent] = useState("viper");
 
   // Main Display
-  const [imgList, setImgList] = useState([
-    "/img/lineups/viper/ascent/attack/a-smoke-end.png",
-    "/img/lineups/viper/ascent/attack/a-smoke-start.png",
-    "/img/lineups/viper/ascent/attack/a-wall.png",
-    "/img/lineups/viper/ascent/attack/b-smoke.png",
-    "/img/lineups/viper/ascent/attack/b-wall.png",
-    "/img/lineups/viper/ascent/attack/catwalk-wall.png",
-    "/img/lineups/viper/ascent/attack/mid-wall.png"
-  ]);
+  const [imgList, setImgList] = useState(getImagesConstant());
 
   const clickFilter = () => {
     const url = "/api/pathfinder";
@@ -51,16 +43,18 @@ export default function HomePage() {
             <Heading as="h4" size="md">
               {capitalizeFirstLetter(map)}
             </Heading>
+          </Center>
             <Wrap justify="center" align="center">
               {imgList.map((imgPath, idx) => {
+                const filename = imgPath.replace(/^.*[\\\/]/, '')
                 return (
                   <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
                     <Image src={imgPath} alt="" />
+                    <Heading as="h6" size="xs">{filename}</Heading>
                   </WrapItem>
                 )
               })}
             </Wrap>
-          </Center>
         </main>
       </Box>
     </RootLayout>
