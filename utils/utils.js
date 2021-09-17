@@ -7,3 +7,7 @@ export function capitalizeFirstLetter(string) {
 export function getImagesConstant() {
   return imagesList
 }
+
+export function removeFileEnding(str) {
+  return str.replace(/\.[^/.]+$/, "")
+}

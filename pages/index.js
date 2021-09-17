@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
-import { Box, Center, Image, Wrap, WrapItem, Heading, useDisclosure } from '@chakra-ui/react';
+import { VStack, Box, Center, Image, Wrap, WrapItem, Heading, useDisclosure } from '@chakra-ui/react';
 // Custom Components
 import RootLayout from "../components/RootLayout";
-import { capitalizeFirstLetter, getImagesConstant } from '../utils/utils';
+import { capitalizeFirstLetter, getImagesConstant, removeFileEnding } from '../utils/utils';
 
 export default function HomePage() {
   // Sidebar data
@@ -49,8 +49,10 @@ export default function HomePage() {
                 const filename = imgPath.replace(/^.*[\\\/]/, '')
                 return (
                   <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
-                    <Image src={imgPath} alt="" />
-                    <Heading as="h6" size="xs">{filename}</Heading>
+                    <VStack>
+                      <Image src={imgPath} alt="" />
+                      <Heading as="h4" size="md">{removeFileEnding(filename)}</Heading>
+                    </VStack>
                   </WrapItem>
                 )
               })}
