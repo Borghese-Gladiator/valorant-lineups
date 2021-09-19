@@ -4,7 +4,7 @@ import { VStack, Box, Center, Image, Wrap, WrapItem, Heading, useDisclosure } fr
 import RootLayout from "../components/RootLayout";
 import { capitalizeFirstLetter, getImagesConstant, removeFileEnding } from '../utils/utils';
 
-export default function HomePage() {
+export default function HomePage({ pathsObject }) {
   // Sidebar data
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
@@ -15,15 +15,18 @@ export default function HomePage() {
   const [agent, setAgent] = useState("viper");
 
   // Main Display
-  const [imgList, setImgList] = useState(getImagesConstant());
+  const [imgList, setImgList] = useState([]);
 
   const clickFilter = () => {
+    setImgList(pathsObject[agent][map][attackDefense])
+    /*
     const url = "/api/pathfinder";
     fetch(`${url}?map=${map}&agent=${agent}&attackDefense=${attackDefense}`)
       .then(response => response.json())
       .then(data => {
         setImgList(data);
       });
+    */
   }
 
   return (
@@ -44,21 +47,54 @@ export default function HomePage() {
               {capitalizeFirstLetter(map)}
             </Heading>
           </Center>
-            <Wrap justify="center" align="center">
-              {imgList.map((imgPath, idx) => {
-                const filename = imgPath.replace(/^.*[\\\/]/, '')
-                return (
-                  <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
-                    <VStack>
-                      <Image src={imgPath} alt="" />
-                      <Heading as="h4" size="md">{removeFileEnding(filename)}</Heading>
-                    </VStack>
-                  </WrapItem>
-                )
-              })}
-            </Wrap>
+          <Wrap justify="center" align="center">
+            {imgList.map((imgPath, idx) => {
+              const filename = imgPath.replace(/^.*[\\\/]/, '')
+              return (
+                <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
+                  <VStack>
+                    <Image src={imgPath} alt="" />
+                    <Heading as="h4" size="md">{removeFileEnding(filename)}</Heading>
+                  </VStack>
+                </WrapItem>
+              )
+            })}
+          </Wrap>
         </main>
       </Box>
     </RootLayout>
   )
+}
+
+export async function getStaticProps() {
+  const fs = require('fs');
+  const path = require('path');
+  const getDirectories = source => {
+    return fs.readdirSync(source, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name)
+  }
+  // recursively builds pathsObject
+  const recBuildObject = (obj, fullPath) => {
+    const dirList = getDirectories(fullPath).map((directory, idx) => {
+      obj[directory] = recBuildObject({}, path.join(fullPath, directory))
+    })
+    if (dirList.length === 0) {
+      // BASE CASE - no subdirectories left
+      const imgList = fs.readdirSync(fullPath).map((filename, idx) => {
+        const imgStaticPath = fullPath.split('public')[1] // Next.js loads from /img/llineups...
+        return path.join(imgStaticPath, filename)
+      })
+      return imgList
+    }
+    return obj
+  }
+  const lineupsDir = path.join(process.cwd(), 'public', 'img', 'lineups')
+  const pathsObject = recBuildObject({}, lineupsDir);
+
+  return {
+    props: {
+      pathsObject,
+    },
+  }
 }
