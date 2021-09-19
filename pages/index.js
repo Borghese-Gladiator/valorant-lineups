@@ -34,14 +34,14 @@ export default function HomePage({ pathsObject }) {
       setAgent={setAgent}
     >
       <Box p={8}>
-        <Wrap justify="center" align="center">
+        <Wrap justify="center" align="center" spacing="30px">
           {imgList.map((imgPath, idx) => {
             const filename = imgPath.replace(/^.*[\\\/]/, '')
             return (
               <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
                 <VStack>
                   <Image src={imgPath} alt="" />
-                  <Heading as="h4" size="md">{removeFileEnding(filename)}</Heading>
+                  <Heading as="h4" size="md" syle={{paddingTop: 0, marginTop: 0}}>{removeFileEnding(filename)}</Heading>
                 </VStack>
               </WrapItem>
             )
