@@ -2,24 +2,16 @@ import React from "react";
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
-  IconButton,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
   useColorModeValue,
-  Stack,
   Image,
   Heading
 } from '@chakra-ui/react';
+import { capitalizeFirstLetter } from '../utils/utils';
 
-const Links = ['Dashboard', 'Projects', 'Team'];
+const Links = [];
 
 const NavLink = ({ children }) => (
   <Link
@@ -35,7 +27,7 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export default function Header({ btnRef, onOpen }) {
+export default function Header({ btnRef, onOpen, map, attackDefense, agent }) {
   
   return (
     <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -66,6 +58,17 @@ export default function Header({ btnRef, onOpen }) {
             {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
             ))}
+            
+        
+          <Heading as="h4" size="md">
+            {capitalizeFirstLetter(map)}
+          </Heading>
+          <Heading as="h4" size="md">
+            {capitalizeFirstLetter(attackDefense)}
+          </Heading>
+          <Heading as="h4" size="md">
+            {capitalizeFirstLetter(agent)}
+          </Heading>
           </HStack>
         </Flex>
       </Flex>

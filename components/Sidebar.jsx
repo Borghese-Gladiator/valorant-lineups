@@ -11,7 +11,7 @@ import {
 // Custom Components
 import GameForm from "./GameForm";
 
-export default function Sidebar({ clickFilter, isOpen, onClose, btnRef, attackDefense, setAttackDefense, map, setMap, agent, setAgent, }) {
+export default function Sidebar({ isOpen, onClose, btnRef, attackDefense, setAttackDefense, map, setMap, agent, setAgent, }) {
   return (
     <>
       <Drawer
@@ -41,7 +41,7 @@ export default function Sidebar({ clickFilter, isOpen, onClose, btnRef, attackDe
             <Button variant="outline" mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button colorScheme="blue" onClick={clickFilter}>Apply</Button>
+            <Button colorScheme="blue" onClick={onClose}>Apply</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
-import { VStack, Box, Center, Image, Wrap, WrapItem, Heading, useDisclosure } from '@chakra-ui/react';
+import { useEffect, useRef, useState } from "react";
+import { VStack, Box, Center, Image, Wrap, WrapItem, Heading, Spacer, useDisclosure } from '@chakra-ui/react';
 // Custom Components
 import RootLayout from "../components/RootLayout";
-import { capitalizeFirstLetter, getImagesConstant, removeFileEnding } from '../utils/utils';
+// Utilities
+import { removeFileEnding } from '../utils/utils';
 
 export default function HomePage({ pathsObject }) {
   // Sidebar data
@@ -17,22 +18,14 @@ export default function HomePage({ pathsObject }) {
   // Main Display
   const [imgList, setImgList] = useState([]);
 
-  const clickFilter = () => {
+  useEffect(() => {
     setImgList(pathsObject[agent][map][attackDefense])
-    /*
-    const url = "/api/pathfinder";
-    fetch(`${url}?map=${map}&agent=${agent}&attackDefense=${attackDefense}`)
-      .then(response => response.json())
-      .then(data => {
-        setImgList(data);
-      });
-    */
-  }
+  }, [attackDefense, map, agent])
 
   return (
     <RootLayout
       btnRef={btnRef} onOpen={onOpen} isOpen={isOpen} onClose={onClose}
-      clickFilter={clickFilter}
+      clickFilter={() => console.log("BLAH")}
       attackDefense={attackDefense}
       setAttackDefense={setAttackDefense}
       map={map}
@@ -41,26 +34,19 @@ export default function HomePage({ pathsObject }) {
       setAgent={setAgent}
     >
       <Box p={8}>
-        <main>
-          <Center>
-            <Heading as="h4" size="md">
-              {capitalizeFirstLetter(map)}
-            </Heading>
-          </Center>
-          <Wrap justify="center" align="center">
-            {imgList.map((imgPath, idx) => {
-              const filename = imgPath.replace(/^.*[\\\/]/, '')
-              return (
-                <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
-                  <VStack>
-                    <Image src={imgPath} alt="" />
-                    <Heading as="h4" size="md">{removeFileEnding(filename)}</Heading>
-                  </VStack>
-                </WrapItem>
-              )
-            })}
-          </Wrap>
-        </main>
+        <Wrap justify="center" align="center">
+          {imgList.map((imgPath, idx) => {
+            const filename = imgPath.replace(/^.*[\\\/]/, '')
+            return (
+              <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
+                <VStack>
+                  <Image src={imgPath} alt="" />
+                  <Heading as="h4" size="md">{removeFileEnding(filename)}</Heading>
+                </VStack>
+              </WrapItem>
+            )
+          })}
+        </Wrap>
       </Box>
     </RootLayout>
   )
