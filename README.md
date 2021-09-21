@@ -1,4 +1,4 @@
-# Valorant Lineups
+# Valorant Lineups (Next.js + Chakra UI)
 - Click environment on the right to view this app on Vercel
 - Given map, agent, and attackDefense, this Next.js + Chakra UI app loads the corresponding images from the /public/ folder and displays them with their filename.
 
@@ -42,7 +42,7 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 - write up index.js to display list of images from calling pathfinder API endpoint
 - Removed API - used getStaticProps to create object at BUILD TIME - script creates a pathsObject that maps given keys used for filtering (agent, map, attackDefense) to an array of image paths
 
-### Issues
+### Fixed Issues
 - USE react-icons - @chakra-ui/icons has very few options
   - https://chakra-ui.com/docs/media-and-icons/icon
 - USE getStaticProps - PRD problem - ```next build``` removes all unused images in /public when I need those images to be in /public so they can be displayed
