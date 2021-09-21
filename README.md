@@ -5,7 +5,20 @@ Next.js project with Material UI to reference lineups during loading screen as q
 - Next.js - React framework
 - Chakra UI - styled React component library
 
-## Project Step by Step Process
+## References
+- https://chakra-ui.com/docs/getting-started
+- Viper Screenshot Content
+  - https://www.youtube.com/watch?v=KBXw6rsnq-s
+- https://nextjs.org/docs/basic-features/data-fetching
+
+## Notes
+- @chakra-ui/icons has very few options (use react-icons)
+  - https://chakra-ui.com/docs/media-and-icons/icon
+- PRD problem - ```next build``` removes all unused images in /public when I need those images to be in /public so they can be displayed
+  - wrote utils/build_script.js that saves the paths to all files in /public/img/lineups to an array which index.js loads as default image list (so none are unused)
+  - SCRAPPED - check archive/index.js => used getStaticProps to fix
+
+#### Project Step by Step Process
 - create-next-app
 - npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
 - npm i react-icons swr
@@ -16,20 +29,7 @@ Next.js project with Material UI to reference lineups during loading screen as q
 - write up index.js to display list of images from calling pathfinder API endpoint
 - Removed API - used getStaticProps to create object at BUILD TIME - script creates a pathsObject that maps given keys used for filtering (agent, map, attackDefense) to an array of image paths
 
-## Notes
-- @chakra-ui/icons has very few options (use react-icons)
-  - https://chakra-ui.com/docs/media-and-icons/icon
-- PRD problem - ```next build``` removes all unused images in /public when I need those images to be in /public so they can be displayed
-  - wrote utils/build_script.js that saves the paths to all files in /public/img/lineups to an array which index.js loads as default image list (so none are unused)
-  - SCRAPPED - check archive/index.js => used getStaticProps to fix
-
-## References
-- https://chakra-ui.com/docs/getting-started
-- Viper Screenshot Content
-  - https://www.youtube.com/watch?v=KBXw6rsnq-s
-- https://nextjs.org/docs/basic-features/data-fetching
-
-## Scrapped Next.js + Material UI
+#### Scrapped Next.js + Material UI
 DO NOT USE Next.js with Material UI => I scrapped the commit history, but there was 20~ commits to try and fix styling and I give up.
 - Next.js - React framework
 - Material UI - styled React component library
@@ -58,3 +58,39 @@ DO NOT USE Next.js with Material UI => I scrapped the commit history, but there 
 - Fixed "Failed to compile" next/document should not be imported outside of pages/_document.js when import is already present in _document.js
   - track bug here - https://github.com/vercel/next.js/issues/28596
   - solve temporarily by removing ESLint
+
+# Next.js Default README
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
