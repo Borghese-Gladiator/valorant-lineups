@@ -2,13 +2,13 @@
 - Click environment on the right to view this app on Vercel
 - Given map, agent, and attackDefense, this Next.js + Chakra UI app loads the corresponding images from the /public/ folder and displays them with their filename.
 
-# Table of Contents
-1. [Technologies](#technologies)
-2. [Get Started](#get-started)
-3. [Notes](#notes)
-4. [README for create-next-app](#readme-for-create-next-app)
+## Table of Contents
+- [Technologies](#technologies)
+- [Get Started](#get-started)
+- [General Notes](#notes)
+- [Default Next.js README info](#readme-for-create-next-app)
 
-#### Technologies
+## Technologies
 - Next.js - React framework
 - Chakra UI - styled React component library
 
@@ -18,7 +18,6 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 - /pages/ - each file is mapped to a route by Next.js (index.js is the home / route)
 - /public/ - static files are served from the public folder by Next.js
 - /api/ - maps each file to /api/* as endpoint
-
 - To display lineup images, I display an image array given agent, map, attackDefense - ```pathsObject[agent][map][attackDefense]```
   - getStaticProps creates pathsObject at buildtime by recursively iterating through /public/img/lineups and creating keys for the folder name. 
   - Alternative was using an API, but that serves the files at runtime and lags more (and doesn't always work smoothly on Vercel)
@@ -43,14 +42,14 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 - write up index.js to display list of images from calling pathfinder API endpoint
 - Removed API - used getStaticProps to create object at BUILD TIME - script creates a pathsObject that maps given keys used for filtering (agent, map, attackDefense) to an array of image paths
 
-## Issues
+### Issues
 - USE react-icons - @chakra-ui/icons has very few options
   - https://chakra-ui.com/docs/media-and-icons/icon
 - USE getStaticProps - PRD problem - ```next build``` removes all unused images in /public when I need those images to be in /public so they can be displayed
   - wrote utils/build_script.js that saves the paths to all files in /public/img/lineups to an array which index.js loads as default image list (so none are unused)
   - SCRAPPED - check archive/index.js => used getStaticProps to fix
 
-#### Issue with Next.js + Material UI
+### Issue with Next.js + Material UI
 There is poor integration between Next.js + Material UI (react component library)
 - When running Next.js dev, Material UI is unable to load styles from ```useStyles``` which is core to working with Material UI
   - The existing workaround suggests to use the following link, but this DOES NOT work with ```@material-ui/core```
