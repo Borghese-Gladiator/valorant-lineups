@@ -1,24 +1,38 @@
-## Valorant Lineups
-Next.js project with Material UI to reference lineups during loading screen as quick reminders. (Related website is out of date - https://www.valorantcards.com/)
+# Valorant Lineups
+- Click environment on the right to view this app on Vercel
+- Given map, agent, and attackDefense, this Next.js + Chakra UI app loads the corresponding images from the /public/ folder and displays them with their filename.
 
-## Technologies
+# Table of Contents
+1. [Technologies](#technologies)
+2. [Get Started](#get-started)
+3. [Notes](#notes)
+4. [README for create-next-app](#readme-for-create-next-app)
+
+#### Technologies
 - Next.js - React framework
 - Chakra UI - styled React component library
 
-## References
+## Get Started
+Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
+- /components/ - holds components used by pages
+- /pages/ - each file is mapped to a route by Next.js (index.js is the home / route)
+- /public/ - static files are served from the public folder by Next.js
+- /api/ - maps each file to /api/* as endpoint
+
+- To display lineup images, I display an image array given agent, map, attackDefense - ```pathsObject[agent][map][attackDefense]```
+  - getStaticProps creates pathsObject at buildtime by recursively iterating through /public/img/lineups and creating keys for the folder name. 
+  - Alternative was using an API, but that serves the files at runtime and lags more (and doesn't always work smoothly on Vercel)
+
+#### References
 - https://chakra-ui.com/docs/getting-started
 - Viper Screenshot Content
   - https://www.youtube.com/watch?v=KBXw6rsnq-s
 - https://nextjs.org/docs/basic-features/data-fetching
+- Related website is out of date - https://www.valorantcards.com/)
 
 ## Notes
-- @chakra-ui/icons has very few options (use react-icons)
-  - https://chakra-ui.com/docs/media-and-icons/icon
-- PRD problem - ```next build``` removes all unused images in /public when I need those images to be in /public so they can be displayed
-  - wrote utils/build_script.js that saves the paths to all files in /public/img/lineups to an array which index.js loads as default image list (so none are unused)
-  - SCRAPPED - check archive/index.js => used getStaticProps to fix
 
-#### Project Step by Step Process
+### Implementation Steps
 - create-next-app
 - npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
 - npm i react-icons swr
@@ -29,37 +43,44 @@ Next.js project with Material UI to reference lineups during loading screen as q
 - write up index.js to display list of images from calling pathfinder API endpoint
 - Removed API - used getStaticProps to create object at BUILD TIME - script creates a pathsObject that maps given keys used for filtering (agent, map, attackDefense) to an array of image paths
 
-#### Scrapped Next.js + Material UI
-DO NOT USE Next.js with Material UI => I scrapped the commit history, but there was 20~ commits to try and fix styling and I give up.
-- Next.js - React framework
-- Material UI - styled React component library
+## Issues
+- USE react-icons - @chakra-ui/icons has very few options
+  - https://chakra-ui.com/docs/media-and-icons/icon
+- USE getStaticProps - PRD problem - ```next build``` removes all unused images in /public when I need those images to be in /public so they can be displayed
+  - wrote utils/build_script.js that saves the paths to all files in /public/img/lineups to an array which index.js loads as default image list (so none are unused)
+  - SCRAPPED - check archive/index.js => used getStaticProps to fix
 
-#### Steps for above conclusion
-- create-next-app and then add /components folder
-- wrote Material UI components like Navbar/Sidebar/GameForm
-- used these components in /pages
-- client styles DO NOT work with server styles
-  - removing them like in the numerous Stack Overflow posts suggested did not work (the ones that removed jssStyles in useEffect)
-  - removing everything and adding this "Next.js + Material UI example" did NOT WORK since example uses a DIFFERENT Material UI package
+#### Issue with Next.js + Material UI
+There is poor integration between Next.js + Material UI (react component library)
+- When running Next.js dev, Material UI is unable to load styles from ```useStyles``` which is core to working with Material UI
+  - The existing workaround suggests to use the following link, but this DOES NOT work with ```@material-ui/core```
     - https://github.com/mui-org/material-ui/tree/master/examples/nextjs
-    - Literally uses @mui when I'm using @material-ui/core and Stack Overflow suggests using this example to get Material UI working
-- To pass build, need to remove ESLINT from create-next-app
+  - I had 20~ commits to try and fix this but I gave up
+    - Steps to Replicate
+      - create-next-app and then add /components folder
+      - wrote Material UI components like Navbar/Sidebar/GameForm
+      - used these components in /pages
+      - client styles DO NOT work with server styles
+        - removing them like in the numerous Stack Overflow posts suggested did not work (the ones that removed jssStyles in useEffect)
+        - removing everything and adding this "Next.js + Material UI example" did NOT WORK since example uses a DIFFERENT Material UI package
+          - https://github.com/mui-org/material-ui/tree/master/examples/nextjs
+          - Literally uses @mui when I'm using @material-ui/core and Stack Overflow suggests using this example to get Material UI working
+      - To pass build, need to remove ESLINT from create-next-app
+    - References for Material UI
+      - Created layouts using past project and here
+        - https://nextjs.org/docs/basic-features/layouts
+        - https://github.com/Borghese-Gladiator/next-installer-site
+      - Added Next.js links wrapping Material UI ListItem & Links
+        - https://stackoverflow.com/questions/66226576/using-the-material-ui-link-component-with-the-next-js-link-component
+        - https://stackoverflow.com/questions/47206639/how-to-add-a-link-to-a-list-in-material-ui-1-0
+      - Fixed development SSR styling issue in Next.js
+        - https://github.com/mui-org/material-ui/tree/master/examples/nextjs
+        - https://material-ui.com/styles/advanced/#next-js
+      - Fixed "Failed to compile" next/document should not be imported outside of pages/_document.js when import is already present in _document.js
+        - track bug here - https://github.com/vercel/next.js/issues/28596
+        - solve temporarily by removing ESLint
 
-#### References
-- Created layouts using past project and here
-  - https://nextjs.org/docs/basic-features/layouts
-  - https://github.com/Borghese-Gladiator/next-installer-site
-- Added Next.js links wrapping Material UI ListItem & Links
-  - https://stackoverflow.com/questions/66226576/using-the-material-ui-link-component-with-the-next-js-link-component
-  - https://stackoverflow.com/questions/47206639/how-to-add-a-link-to-a-list-in-material-ui-1-0
-- Fixed development SSR styling issue in Next.js
-  - https://github.com/mui-org/material-ui/tree/master/examples/nextjs
-  - https://material-ui.com/styles/advanced/#next-js
-- Fixed "Failed to compile" next/document should not be imported outside of pages/_document.js when import is already present in _document.js
-  - track bug here - https://github.com/vercel/next.js/issues/28596
-  - solve temporarily by removing ESLint
-
-# Next.js Default README
+# README for create-next-app
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
