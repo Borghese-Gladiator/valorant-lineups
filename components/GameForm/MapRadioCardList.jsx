@@ -11,7 +11,10 @@ function RadioCard(props) {
 
   return (
     <WrapItem>
-      <Box as="label" style={{background: "#C9CCD5"}}>
+      <Box as="label" style={{
+        background: "#C9CCD5",
+        borderColor: "#C9CCD5"
+      }}>
         <input {...input} />
         <Box
           {...checkbox}

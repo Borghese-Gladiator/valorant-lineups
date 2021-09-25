@@ -18,13 +18,15 @@ export default function GameForm({ attackDefense, setAttackDefense, map, setMap,
           <Heading as="h4" size="md">
             Map
           </Heading>
-          <MapRadioCardList setMap={setMap} />
+          <Box p={1}>
+            <MapRadioCardList setMap={setMap} />
+          </Box>
         </GridItem>
         <GridItem colSpan={1}>
+          <Heading as="h4" size="md">
+            Position
+          </Heading>
           <Box p={1}>
-            <Heading as="h4" size="md">
-              Position
-            </Heading>
             <RadioGroup onChange={setAttackDefense} value={attackDefense}>
               <Stack direction="row">
                 <Radio value="attack">Attack</Radio>
@@ -37,13 +39,17 @@ export default function GameForm({ attackDefense, setAttackDefense, map, setMap,
           <Heading as="h4" size="md">
             Site
           </Heading>
-          <SiteRadioCardList map={map} />
+          <Box p={1}>
+            <SiteRadioCardList map={map} />
+          </Box>
         </GridItem>
         <GridItem colSpan={2}>
           <Heading as="h4" size="md">
             Agents
           </Heading>
-          <AgentRadioCardList setAgent={setAgent} />
+          <Box p={1}>
+            <AgentRadioCardList setAgent={setAgent} />
+          </Box>
         </GridItem>
       </Grid>
     </div>

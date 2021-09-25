@@ -4,6 +4,7 @@ import { useRadio, useRadioGroup, Box, Image, Wrap, WrapItem } from "@chakra-ui/
 
 // 1. Create a component that consumes the `useRadio` hook
 function RadioCard(props) {
+  const { isDisabled } = props
   const { getInputProps, getCheckboxProps } = useRadio(props)
 
   const input = getInputProps()
@@ -11,7 +12,15 @@ function RadioCard(props) {
 
   return (
     <WrapItem>
-      <Box as="label" style={{background: "#C9CCD5"}}>
+      <Box as="label"
+        style={isDisabled ? {
+          background: "#6c757d",
+          borderColor: "#6c757d"
+        } : {
+          background: "#C9CCD5",
+          borderColor: "#C9CCD5"
+        }}
+      >
         <input {...input} />
         <Box
           {...checkbox}
@@ -53,27 +62,36 @@ export default function AgentRadioCardList({ setAgent }) {
   return (
     <Wrap {...group}>
       {[
-        { value: "astra", imgPath: "/img/agents/icons/Astra_icon.png" },
-        { value: "breach", imgPath: "/img/agents/icons/Breach_icon.png" },
-        { value: "brimstone", imgPath: "/img/agents/icons/Brimstone_icon.png" },
-        { value: "cypher", imgPath: "/img/agents/icons/Cypher_icon.png" },
-        { value: "jett", imgPath: "/img/agents/icons/Jett_icon.png" },
-        { value: "kayo", imgPath: "/img/agents/icons/KAYO_icon.png" },
-        { value: "killjoy", imgPath: "/img/agents/icons/Killjoy_icon.png" },
-        { value: "omen", imgPath: "/img/agents/icons/Omen_icon.png" },
-        { value: "phoenix", imgPath: "/img/agents/icons/Phoenix_icon.png" },
-        { value: "raze", imgPath: "/img/agents/icons/Raze_icon.png" },
-        { value: "reyna", imgPath: "/img/agents/icons/Reyna_icon.png" },
-        { value: "sage", imgPath: "/img/agents/icons/Sage_icon.png" },
-        { value: "skye", imgPath: "/img/agents/icons/Skye_icon.png" },
-        { value: "sova", imgPath: "/img/agents/icons/Sova_icon.png" },
-        { value: "viper", imgPath: "/img/agents/icons/Viper_icon.png" },
-        { value: "yoru", imgPath: "/img/agents/icons/Yoru_icon.png" }
-      ].map(({ value, imgPath }) => {
+        { value: "astra", imgPath: "/img/agents/icons/Astra_icon.png", disabled: false },
+        { value: "breach", imgPath: "/img/agents/icons/Breach_icon.png", disabled: true },
+        { value: "brimstone", imgPath: "/img/agents/icons/Brimstone_icon.png", disabled: false },
+        { value: "cypher", imgPath: "/img/agents/icons/Cypher_icon.png", disabled: true },
+        { value: "jett", imgPath: "/img/agents/icons/Jett_icon.png", disabled: true },
+        { value: "kayo", imgPath: "/img/agents/icons/KAYO_icon.png", disabled: true },
+        { value: "killjoy", imgPath: "/img/agents/icons/Killjoy_icon.png", disabled: true },
+        { value: "omen", imgPath: "/img/agents/icons/Omen_icon.png", disabled: true },
+        { value: "phoenix", imgPath: "/img/agents/icons/Phoenix_icon.png", disabled: true },
+        { value: "raze", imgPath: "/img/agents/icons/Raze_icon.png", disabled: true },
+        { value: "reyna", imgPath: "/img/agents/icons/Reyna_icon.png", disabled: true },
+        { value: "sage", imgPath: "/img/agents/icons/Sage_icon.png", disabled: true },
+        { value: "skye", imgPath: "/img/agents/icons/Skye_icon.png", disabled: true },
+        { value: "sova", imgPath: "/img/agents/icons/Sova_icon.png", disabled: true },
+        { value: "viper", imgPath: "/img/agents/icons/Viper_icon.png", disabled: false },
+        { value: "yoru", imgPath: "/img/agents/icons/Yoru_icon.png", disabled: true }
+      ].map(({ value, imgPath, disabled }) => {
         const radio = getRadioProps({ value })
+        const imageStyles = disabled ? {
+          filter: "grayscale(100%)"
+        } : {};
         return (
-          <RadioCard key={value} {...radio}>
-            <Image src={imgPath} alt="" />
+          <RadioCard key={value} isDisabled={disabled} {...radio}>
+            <Image src={imgPath}yalt={value}
+              style={{
+                ...imageStyles,
+                width: "20px",
+                height: "20px",
+              }}
+            />
           </RadioCard>
         )
       })}
