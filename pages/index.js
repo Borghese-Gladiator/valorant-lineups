@@ -25,7 +25,6 @@ export default function HomePage({ pathsObject }) {
   return (
     <RootLayout
       btnRef={btnRef} onOpen={onOpen} isOpen={isOpen} onClose={onClose}
-      clickFilter={() => console.log("BLAH")}
       attackDefense={attackDefense}
       setAttackDefense={setAttackDefense}
       map={map}
