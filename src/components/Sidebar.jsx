@@ -11,7 +11,7 @@ import {
 // Custom Components
 import GameForm from "./GameForm";
 
-export default function Sidebar({ isOpen, onClose, btnRef, attackDefense, setAttackDefense, map, setMap, agent, setAgent, }) {
+export default function Sidebar({ isOpen, onClose, btnRef }) {
   return (
     <>
       <Drawer
@@ -27,14 +27,7 @@ export default function Sidebar({ isOpen, onClose, btnRef, attackDefense, setAtt
           <DrawerHeader></DrawerHeader>
 
           <DrawerBody>
-            <GameForm
-              attackDefense={attackDefense}
-              setAttackDefense={setAttackDefense}
-              map={map}
-              setMap={setMap}
-              agent={agent}
-              setAgent={setAgent}
-            />
+            <GameForm />
           </DrawerBody>
 
           <DrawerFooter>

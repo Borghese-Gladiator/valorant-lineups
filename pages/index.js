@@ -3,6 +3,7 @@ import { VStack, Box, Center, Image, Wrap, WrapItem, Heading, Spacer, useDisclos
 // Custom Components
 import RootLayout from "../src/components/RootLayout";
 // Utilities
+import GameDataContext from "../src/context/GameDataContext";
 import { removeFileEnding } from '../src/utils/utils';
 
 export default function HomePage({ pathsObject }) {
@@ -11,43 +12,44 @@ export default function HomePage({ pathsObject }) {
   const btnRef = useRef();
 
   // Filter Game Form data
-  const [attackDefense, setAttackDefense] = useState("attack");
-  const [map, setMap] = useState("ascent");
-  const [agent, setAgent] = useState("viper");
+  const [gameData, setGameData] = useState({
+    attackDefense: "attack",
+    map: "ascent",
+    agent: "viper"
+  })
 
   // Main Display
   const [imgList, setImgList] = useState([]);
 
   useEffect(() => {
+    const agent = gameData.agent
+    const map = gameData.map
+    const attackDefense = gameData.attackDefense
     setImgList(pathsObject[agent][map][attackDefense])
-  }, [attackDefense, map, agent])
+  }, [gameData])
 
   return (
-    <RootLayout
-      btnRef={btnRef} onOpen={onOpen} isOpen={isOpen} onClose={onClose}
-      attackDefense={attackDefense}
-      setAttackDefense={setAttackDefense}
-      map={map}
-      setMap={setMap}
-      agent={agent}
-      setAgent={setAgent}
-    >
-      <Box p={8}>
-        <Wrap justify="center" align="center" spacing="30px">
-          {imgList.map((imgPath, idx) => {
-            const filename = imgPath.replace(/^.*[\\\/]/, '')
-            return (
-              <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
-                <VStack>
-                  <Image src={imgPath} alt="" />
-                  <Heading as="h4" size="md" syle={{paddingTop: 0, marginTop: 0}}>{removeFileEnding(filename)}</Heading>
-                </VStack>
-              </WrapItem>
-            )
-          })}
-        </Wrap>
-      </Box>
-    </RootLayout>
+    <GameDataContext.Provider value={{ gameData, setGameData }}>
+      <RootLayout
+        btnRef={btnRef} onOpen={onOpen} isOpen={isOpen} onClose={onClose}
+      >
+        <Box p={8}>
+          <Wrap justify="center" align="center" spacing="30px">
+            {imgList.map((imgPath, idx) => {
+              const filename = imgPath.replace(/^.*[\\\/]/, '')
+              return (
+                <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
+                  <VStack>
+                    <Image src={imgPath} alt="" />
+                    <Heading as="h4" size="md" syle={{ paddingTop: 0, marginTop: 0 }}>{removeFileEnding(filename)}</Heading>
+                  </VStack>
+                </WrapItem>
+              )
+            })}
+          </Wrap>
+        </Box>
+      </RootLayout>
+    </GameDataContext.Provider>
   )
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import {
   Box,
   Flex,
@@ -10,6 +10,7 @@ import {
   Heading
 } from '@chakra-ui/react';
 import { capitalizeFirstLetter } from '../utils/utils';
+import GameDataContext from "../context/GameDataContext";
 
 const Links = [];
 
@@ -27,8 +28,8 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export default function Header({ btnRef, onOpen, map, attackDefense, agent }) {
-  
+export default function Header({ btnRef, onOpen }) {
+  const { gameData } = useContext(GameDataContext);
   return (
     <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
       <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
@@ -61,13 +62,13 @@ export default function Header({ btnRef, onOpen, map, attackDefense, agent }) {
             
         
           <Heading as="h4" size="md">
-            {capitalizeFirstLetter(map)}
+            {capitalizeFirstLetter(gameData.map)}
           </Heading>
           <Heading as="h4" size="md">
-            {capitalizeFirstLetter(attackDefense)}
+            {capitalizeFirstLetter(gameData.attackDefense)}
           </Heading>
           <Heading as="h4" size="md">
-            {capitalizeFirstLetter(agent)}
+            {capitalizeFirstLetter(gameData.agent)}
           </Heading>
           </HStack>
         </Flex>
