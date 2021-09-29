@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { VStack, Box, Center, Image, Wrap, WrapItem, Heading, Spacer, useDisclosure } from '@chakra-ui/react';
 // Custom Components
-import RootLayout from "../components/RootLayout";
+import RootLayout from "../src/components/RootLayout";
 // Utilities
-import { removeFileEnding } from '../utils/utils';
+import { removeFileEnding } from '../src/utils/utils';
 
 export default function HomePage({ pathsObject }) {
   // Sidebar data
