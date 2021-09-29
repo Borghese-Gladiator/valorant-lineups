@@ -41,6 +41,8 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 - write pathfinder API endpoint
 - write up index.js to display list of images from calling pathfinder API endpoint
 - Removed API - used getStaticProps to create object at BUILD TIME - script creates a pathsObject that maps given keys used for filtering (agent, map, attackDefense) to an array of image paths
+- Moved all content to /src
+- Rewrote to use React Context with GameDataContext (formerly passed all GameData from pages/index.js down to components)
 
 ### Fixed Issues
 - USE react-icons - @chakra-ui/icons has very few options
