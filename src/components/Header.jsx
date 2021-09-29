@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { capitalizeFirstLetter } from '../utils/utils';
 import GameDataContext from "../context/GameDataContext";
+import { patchVersion } from '../utils/constants';
 
 const Links = [];
 
@@ -40,6 +41,9 @@ export default function Header({ btnRef, onOpen }) {
               Valorant Lineups
             </Heading>
           </HStack>
+          <Heading as="h4" size="md">
+            Patch {patchVersion}
+          </Heading>
           <Button
             variant={'solid'}
             colorScheme={'teal'}

@@ -1,3 +1,5 @@
+export const patchVersion = 3.06 
+
 export const siteDict = {
   "ascent": ["A", "B", "MID"],
   "bind": ["A", "B"],
