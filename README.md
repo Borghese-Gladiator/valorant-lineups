@@ -48,6 +48,7 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 - USE getStaticProps - PRD problem - ```next build``` removes all unused images in /public when I need those images to be in /public so they can be displayed
   - wrote utils/build_script.js that saves the paths to all files in /public/img/lineups to an array which index.js loads as default image list (so none are unused)
   - SCRAPPED - check archive/index.js => used getStaticProps to fix
+- Chakra UI Radio REQUIRES to use prop "value" as opposed to any other key like "name"
 
 ### Issue with Next.js + Material UI
 There is poor integration between Next.js + Material UI (react component library)
