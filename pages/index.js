@@ -33,7 +33,11 @@ export default function HomePage({ pathsObject }) {
       <RootLayout
         btnRef={btnRef} onOpen={onOpen} isOpen={isOpen} onClose={onClose}
       >
-        <Box p={8}>
+        <Box p={8} style={{
+          backgroundColor: "#e5e5f7",
+          backgroundImage: "radial-gradient(#444cf7 1px, #e5e5f7 1px)",
+          backgroundSize: "20px 20px"
+        }}>
           <Wrap justify="center" align="center" spacing="30px">
             {imgList.map((imgPath, idx) => {
               const filename = imgPath.replace(/^.*[\\\/]/, '')

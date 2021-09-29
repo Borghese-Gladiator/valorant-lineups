@@ -43,6 +43,7 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 - Removed API - used getStaticProps to create object at BUILD TIME - script creates a pathsObject that maps given keys used for filtering (agent, map, attackDefense) to an array of image paths
 - Moved all content to /src
 - Rewrote to use React Context with GameDataContext (formerly passed all GameData from pages/index.js down to components)
+- Added pattern to white background - https://css-tricks.com/css-background-patterns/
 
 ### Fixed Issues
 - USE react-icons - @chakra-ui/icons has very few options
