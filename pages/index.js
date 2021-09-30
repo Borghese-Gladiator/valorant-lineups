@@ -43,11 +43,9 @@ export default function HomePage({ pathsObject }) {
             spacing={4}
             align="stretch"
           >
-            {splitImgListBySitePrefix(imgList).map((val, idx) => {
-              const { siteName, siteImgList } = val
-              console.log(siteName, siteImgList)
+            {splitImgListBySitePrefix(imgList).map(({ siteName, siteImgList }, idx) => {
               return (
-                <Box>
+                <Box key={`site-${idx}`}>
                   <Center><Heading as="h2" size="xl">{siteName.toUpperCase()}</Heading></Center>
                   <Wrap justify="center" align="center" spacing="30px">
                     {
@@ -66,8 +64,7 @@ export default function HomePage({ pathsObject }) {
                   </Wrap>
                 </Box>
               )
-            })
-            }
+            })}
           </VStack>
         </Box>
       </RootLayout>
