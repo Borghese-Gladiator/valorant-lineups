@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { useDisclosure, VStack, Box, Center, Image, Wrap, WrapItem, Heading, StackDivider } from '@chakra-ui/react';
+import { useDisclosure, HStack, VStack, Box, Center, Image, Wrap, WrapItem, Heading, StackDivider } from '@chakra-ui/react';
 // Custom Components
 import RootLayout from "../src/components/RootLayout";
 // Utilities
 import GameDataContext from "../src/context/GameDataContext";
-import { splitImgListBySitePrefix, removeFileEnding } from '../src/utils/utils';
+import { splitImgListBySitePrefix, removeFileEnding, capitalizeFirstLetter } from '../src/utils/utils';
 
 export default function HomePage({ pathsObject }) {
   // Sidebar data
@@ -38,6 +38,19 @@ export default function HomePage({ pathsObject }) {
           backgroundImage: "radial-gradient(#444cf7 1px, #e5e5f7 1px)",
           backgroundSize: "20px 20px"
         }}>
+          <Center>
+            <HStack>
+              <Heading as="h2" size="xl">
+                {capitalizeFirstLetter(gameData.map)} {'>'}
+              </Heading>
+              <Heading as="h2" size="xl">
+                {capitalizeFirstLetter(gameData.attackDefense)} {'>'}
+              </Heading>
+              <Heading as="h2" size="xl">
+                {capitalizeFirstLetter(gameData.agent)}
+              </Heading>
+            </HStack>
+          </Center>
           <VStack
             divider={<StackDivider borderColor="gray.200" />}
             spacing={4}

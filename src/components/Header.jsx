@@ -63,17 +63,6 @@ export default function Header({ btnRef, onOpen }) {
             {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
             ))}
-            
-        
-          <Heading as="h4" size="md">
-            {capitalizeFirstLetter(gameData.map)}
-          </Heading>
-          <Heading as="h4" size="md">
-            {capitalizeFirstLetter(gameData.attackDefense)}
-          </Heading>
-          <Heading as="h4" size="md">
-            {capitalizeFirstLetter(gameData.agent)}
-          </Heading>
           </HStack>
         </Flex>
       </Flex>
