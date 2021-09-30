@@ -44,6 +44,7 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 - Moved all content to /src
 - Rewrote to use React Context with GameDataContext (formerly passed all GameData from pages/index.js down to components)
 - Added pattern to white background - https://css-tricks.com/css-background-patterns/
+- Split image list by section using first prefix of filename (done at runtime)
 
 ### Fixed Issues
 - USE react-icons - @chakra-ui/icons has very few options

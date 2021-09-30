@@ -22,6 +22,5 @@ export function splitImgListBySitePrefix(imgPathList) {
       arr[idx].siteImgList.push(imgPath)
     }
   }
-  console.log(arr)
   return arr
 }

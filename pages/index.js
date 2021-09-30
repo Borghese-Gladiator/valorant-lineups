@@ -43,33 +43,30 @@ export default function HomePage({ pathsObject }) {
             spacing={4}
             align="stretch"
           >
-            {console.log(imgList)}
-            {console.log(splitImgListBySitePrefix(imgList))}
-            {
-              splitImgListBySitePrefix(imgList).map((val, idx) => {
-                const { siteName, siteImgList } = val
-                console.log(siteName, siteImgList)
-                return (
-                  <Box>
-                    <Center><Heading as="h2" size="xl">{siteName.toUpperCase()}</Heading></Center>
-                    <Wrap justify="center" align="center" spacing="30px">
-                      {
-                        siteImgList.map((imgPath, idx) => {
-                          const filename = imgPath.replace(/^.*[\\\/]/, '')
-                          return (
-                            <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
-                              <VStack>
-                                <Image src={imgPath} alt="" />
-                                <Heading as="h4" size="md" syle={{ paddingTop: 0, marginTop: 0 }}>{removeFileEnding(filename)}</Heading>
-                              </VStack>
-                            </WrapItem>
-                          )
-                        })
-                      }
-                    </Wrap>
-                  </Box>
-                )
-              })
+            {splitImgListBySitePrefix(imgList).map((val, idx) => {
+              const { siteName, siteImgList } = val
+              console.log(siteName, siteImgList)
+              return (
+                <Box>
+                  <Center><Heading as="h2" size="xl">{siteName.toUpperCase()}</Heading></Center>
+                  <Wrap justify="center" align="center" spacing="30px">
+                    {
+                      siteImgList.map((imgPath, idx) => {
+                        const filename = imgPath.replace(/^.*[\\\/]/, '')
+                        return (
+                          <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
+                            <VStack>
+                              <Image src={imgPath} alt="" />
+                              <Heading as="h4" size="md" syle={{ paddingTop: 0, marginTop: 0 }}>{removeFileEnding(filename)}</Heading>
+                            </VStack>
+                          </WrapItem>
+                        )
+                      })
+                    }
+                  </Wrap>
+                </Box>
+              )
+            })
             }
           </VStack>
         </Box>
