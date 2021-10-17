@@ -6,6 +6,7 @@
 - [Technologies](#technologies)
 - [Get Started](#get-started)
 - [General Notes](#notes)
+- [Screenshots Source](#screenshots-source)
 - [Default Next.js README info](#readme-for-create-next-app)
 
 ## Technologies
@@ -24,8 +25,6 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 
 #### References
 - https://chakra-ui.com/docs/getting-started
-- Viper Screenshot Content
-  - https://www.youtube.com/watch?v=KBXw6rsnq-s
 - https://nextjs.org/docs/basic-features/data-fetching
 - Related website is out of date - https://www.valorantcards.com/)
 
@@ -83,6 +82,11 @@ There is poor integration between Next.js + Material UI (react component library
       - Fixed "Failed to compile" next/document should not be imported outside of pages/_document.js when import is already present in _document.js
         - track bug here - https://github.com/vercel/next.js/issues/28596
         - solve temporarily by removing ESLint
+
+## Screenshots Source
+- Viper lineups
+  - Unidaro - https://www.youtube.com/channel/UCFWmMq1_tLA5Ymb3Qa20w7Q
+  - SkillCapped - https://www.youtube.com/channel/UCre4LlH_zPpgeUVvBGCMqcA
 
 # README for create-next-app
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
