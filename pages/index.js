@@ -4,6 +4,7 @@ import { useDisclosure, HStack, VStack, Box, Center, Image, Wrap, WrapItem, Head
 import RootLayout from "../src/components/RootLayout";
 // Utilities
 import GameDataContext from "../src/context/GameDataContext";
+import SiteDataContext from "../src/context/SiteDataContext";
 import { splitImgListBySitePrefix, removeFileEnding, capitalizeFirstLetter } from '../src/utils/utils';
 
 export default function HomePage({ pathsObject }) {
@@ -16,71 +17,81 @@ export default function HomePage({ pathsObject }) {
     attackDefense: "attack",
     map: "ascent",
     agent: "viper"
-  })
+  });
+  const [siteData, setSiteData] = useState("A");
 
   // Main Display
   const [imgList, setImgList] = useState([]);
 
   useEffect(() => {
-    const agent = gameData.agent
-    const map = gameData.map
-    const attackDefense = gameData.attackDefense
-    setImgList(pathsObject[agent][map][attackDefense])
-  }, [gameData])
+    const agent = gameData.agent;
+    const map = gameData.map;
+    const attackDefense = gameData.attackDefense;
+    if (attackDefense === "attack") {
+      setImgList(pathsObject[agent][map][attackDefense][siteData])
+    } else {
+      setImgList(pathsObject[agent][map][attackDefense])
+    }
+  }, [gameData, siteData])
 
   return (
     <GameDataContext.Provider value={{ gameData, setGameData }}>
-      <RootLayout
-        btnRef={btnRef} onOpen={onOpen} isOpen={isOpen} onClose={onClose}
-      >
-        <Box p={8} style={{
-          backgroundColor: "#e5e5f7",
-          backgroundImage: "radial-gradient(#444cf7 1px, #e5e5f7 1px)",
-          backgroundSize: "20px 20px"
-        }}>
-          <Center>
-            <HStack>
-              <Heading as="h2" size="xl">
-                {capitalizeFirstLetter(gameData.map)} {'>'}
-              </Heading>
-              <Heading as="h2" size="xl">
-                {capitalizeFirstLetter(gameData.attackDefense)} {'>'}
-              </Heading>
-              <Heading as="h2" size="xl">
-                {capitalizeFirstLetter(gameData.agent)}
-              </Heading>
-            </HStack>
-          </Center>
-          <VStack
-            divider={<StackDivider borderColor="gray.200" />}
-            spacing={4}
-            align="stretch"
-          >
-            {splitImgListBySitePrefix(imgList).map(({ siteName, siteImgList }, idx) => {
-              return (
-                <Box key={`site-${idx}`}>
-                  <Center><Heading as="h2" size="xl">{siteName.toUpperCase()}</Heading></Center>
-                  <Wrap justify="center" align="center" spacing="30px">
-                    {
-                      siteImgList.map((imgPath, idx) => {
-                        const filename = imgPath.replace(/^.*[\\\/]/, '')
-                        return (
-                          <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
-                            <VStack>
-                              <Image src={imgPath} alt="" />
-                              <Heading as="h4" size="md" syle={{ paddingTop: 0, marginTop: 0 }}>{removeFileEnding(filename)}</Heading>
-                            </VStack>
-                          </WrapItem>
-                        )
-                      })
-                    }
-                  </Wrap>
-                </Box>
-              )
-            })}
-          </VStack>
-        </Box>
-      </RootLayout>
+      <SiteDataContext.Provider value={{ siteData, setSiteData }}>
+        <RootLayout
+          btnRef={btnRef} onOpen={onOpen} isOpen={isOpen} onClose={onClose}
+        >
+          <Box p={8} style={{
+            backgroundColor: "#e5e5f7",
+            backgroundImage: "radial-gradient(#444cf7 1px, #e5e5f7 1px)",
+            backgroundSize: "20px 20px"
+          }}>
+            <Center>
+              <HStack>
+                <Heading as="h2" size="xl">
+                  {capitalizeFirstLetter(gameData.map) + '>'}
+                </Heading>
+                <Heading as="h2" size="xl">
+                  {capitalizeFirstLetter(gameData.attackDefense) + '>'}
+                </Heading>
+                <Heading as="h2" size="xl">
+                  {gameData.attackDefense === "attack" ? capitalizeFirstLetter(siteData) + ' >' : ""}
+                </Heading>
+                <Heading as="h2" size="xl">
+                  {capitalizeFirstLetter(gameData.agent)}
+                </Heading>
+              </HStack>
+            </Center>
+            <VStack
+              divider={<StackDivider borderColor="gray.200" />}
+              spacing={4}
+              align="stretch"
+            >
+              {splitImgListBySitePrefix(imgList).map(({ siteName, siteImgList }, idx) => {
+                return (
+                  <Box key={`site-${idx}`}>
+                    <Center><Heading as="h2" size="xl">{siteName.toUpperCase()}</Heading></Center>
+                    <Wrap justify="center" align="center" spacing="30px">
+                      {
+                        siteImgList.map((imgPath, idx) => {
+                          const filename = imgPath.replace(/^.*[\\\/]/, '')
+                          return (
+                            <WrapItem key={`lineup-img-${idx}`} style={{ maxWidth: "600px" }}>
+                              <VStack>
+                                <Image src={imgPath} alt="" />
+                                <Heading as="h4" size="md" syle={{ paddingTop: 0, marginTop: 0 }}>{removeFileEnding(filename)}</Heading>
+                              </VStack>
+                            </WrapItem>
+                          )
+                        })
+                      }
+                    </Wrap>
+                  </Box>
+                )
+              })}
+            </VStack>
+          </Box>
+        </RootLayout>
+      </SiteDataContext.Provider>
     </GameDataContext.Provider>
   )
 }

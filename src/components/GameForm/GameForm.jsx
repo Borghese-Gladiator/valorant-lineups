@@ -5,6 +5,7 @@ import AgentRadioCardList from './AgentRadioCardList';
 import MapRadioCardList from './MapRadioCardList';
 import SiteRadioCardList from "./SiteRadioCardList";
 import GameDataContext from "../../context/GameDataContext";
+import SiteDataContext from "../../context/SiteDataContext";
 
 function AttackDefenseRadioBtns({ setAttackDefense, attackDefense }) {
   return (
@@ -19,10 +20,11 @@ function AttackDefenseRadioBtns({ setAttackDefense, attackDefense }) {
 
 export default function GameForm() {
   const { gameData, setGameData } = useContext(GameDataContext);
+  const { siteData, setSiteData } = useContext(SiteDataContext);
   const setAttackDefense = (newAttackDefense) => setGameData({ ...gameData, attackDefense: newAttackDefense });
   const setMap = (newMap) => setGameData({ ...gameData, map: newMap })
   const setAgent = (newAgent) => setGameData({ ...gameData, agent: newAgent })
-
+  const setSite = (newSite) => setSiteData(newSite);
   return (
     <Grid
       h="200px"
@@ -51,7 +53,7 @@ export default function GameForm() {
           Site
         </Heading>
         <Box p={1}>
-          <SiteRadioCardList map={gameData.map} />
+          <SiteRadioCardList map={gameData.map} setSite={setSite} />
         </Box>
       </GridItem>
       <GridItem colSpan={2}>

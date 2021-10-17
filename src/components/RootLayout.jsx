@@ -3,7 +3,7 @@ import React from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-export default function RootLayout({ btnRef, onOpen, isOpen, onClose, attackDefense, setAttackDefense, map, setMap, agent, setAgent, children }) {
+export default function RootLayout({ btnRef, onOpen, isOpen, onClose, children }) {
   return (
     <>
       <Header btnRef={btnRef} onOpen={onOpen} />

@@ -1,11 +1,14 @@
 import { useRadioGroup, HStack, Radio } from "@chakra-ui/react"
 import { siteDict } from "../../utils/constants";
 
-export default function SiteRadioCardList({ map }) {
+export default function SiteRadioCardList({ map, setSite }) {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "site",
     defaultValue: "A",
-    onChange: (value) => console.log(value),
+    onChange: (value) => {
+      setSite(value);
+      console.log(value);
+    }
   })
 
   const group = getRootProps();

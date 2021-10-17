@@ -4,7 +4,7 @@ export const siteDict = {
   "ascent": ["A", "B", "MID"],
   "bind": ["A", "B"],
   "breeze": ["A", "B", "MID"],
-  "fracture": ["A", "B"],
+  "fracture": ["A_DROP", "A_MAIN", "B_ARCADE", "B_MAIN"],
   "haven": ["A", "B", "C"],
   "icebox": ["A", "B", "MID"],
   "split": ["A", "B", "MID"]
