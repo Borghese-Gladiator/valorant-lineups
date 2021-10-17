@@ -44,6 +44,10 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 - Rewrote to use React Context with GameDataContext (formerly passed all GameData from pages/index.js down to components)
 - Added pattern to white background - https://css-tricks.com/css-background-patterns/
 - Split image list by section using first prefix of filename (done at runtime)
+- Rewrote to use a paths object that saves all images and their paths at build time
+  - Use pathsObject to select images at runtime
+- new feature to select by site, added SiteDataContext - ```(if attackDefense === 'attack') { setImgList(pathsObject[agent][map][attackDefense][siteData]) }```
+- add new image content of Post Plant Lineups for each map (Ascent, Bind, Breeze, Fracture, Haven, Icebox, Split)
 
 ### Fixed Issues
 - USE react-icons - @chakra-ui/icons has very few options
