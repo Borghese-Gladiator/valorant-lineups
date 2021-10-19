@@ -29,6 +29,15 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 - Related website is out of date - https://www.valorantcards.com/)
 
 ## Notes
+- Vercel by default caches static files - https://vercel.com/docs/concepts/edge-network/caching#static-files
+- Gave up on web design software - used CSS & Flex & [remove.bg](https://www.remove.bg) to create logo
+  - I want to put a logo image next to a ~108px text with a custom font
+  - Web Design software (Figma, Sketch, Invision) is SO BAD - it's actually a scam
+    - Figma has a crappy UI, but basic text & font size changes are doable. The problem is with uploading a custom font, it requires a Figma Font service, but even when running, no interface appears whatsover.
+    - Sketch requires a Mac OS download in addition to their web app
+    - Invision is unable to add custom fonts
+  - every app requires a sign up which I have come to expect (but still dislike)
+  - Obligatory pro - they enable collaboration and focus on sharing of prototypes.
 
 ### Implementation Steps
 - create-next-app
@@ -91,6 +100,7 @@ There is poor integration between Next.js + Material UI (react component library
 - Viper lineups
   - Unidaro - https://www.youtube.com/channel/UCFWmMq1_tLA5Ymb3Qa20w7Q
   - SkillCapped - https://www.youtube.com/channel/UCre4LlH_zPpgeUVvBGCMqcA
+  - FluxRevived - https://www.youtube.com/channel/UC5pOxttTGwCR5CpFS6KcZIw
 
 # README for create-next-app
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
