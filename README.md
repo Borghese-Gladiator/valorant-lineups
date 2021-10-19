@@ -30,7 +30,7 @@ Start with ```npm run dev``` at [http://localhost:3000](http://localhost:3000)
 
 ## Notes
 - Vercel by default caches static files - https://vercel.com/docs/concepts/edge-network/caching#static-files
-- Gave up on web design software - used CSS & Flex & [remove.bg](https://www.remove.bg) to create logo
+- Gave up on web design software - used CSS & Flex & [Google Fonts](https://fonts.google.com/) & [remove.bg](https://www.remove.bg) to create logo
   - I want to put a logo image next to a ~108px text with a custom font
   - Web Design software (Figma, Sketch, Invision) is SO BAD - it's actually a scam
     - Figma has a crappy UI, but basic text & font size changes are doable. The problem is with uploading a custom font, it requires a Figma Font service, but even when running, no interface appears whatsover.
