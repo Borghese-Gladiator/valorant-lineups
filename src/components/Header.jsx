@@ -29,6 +29,13 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
+const Logo = () => (
+  <>
+    <Image src="/img/valorant_logo.png" alt="" style={{ height: "52px" }} />
+    <Image src="/img/custom_logo_text.png" alt="" style={{ height: "52px" }} />
+  </>
+)
+
 export default function Header({ btnRef, onOpen }) {
   const { gameData } = useContext(GameDataContext);
   return (
@@ -36,10 +43,7 @@ export default function Header({ btnRef, onOpen }) {
       <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
         <HStack spacing={8} alignItems={'center'}>
           <HStack>
-            <Image src="/img/valorant_logo.png" alt="" style={{ height: "36px" }} />
-            <Heading as="h3" size="lg">
-              Valorant Lineups
-            </Heading>
+            <Logo />
           </HStack>
           <Heading as="h4" size="md">
             Patch {patchVersion}
