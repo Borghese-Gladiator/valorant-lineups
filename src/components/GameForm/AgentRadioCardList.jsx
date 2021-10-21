@@ -2,10 +2,10 @@ import RadioCard from './RadioCard';
 import { useRadioGroup, Image, Wrap } from "@chakra-ui/react"
 import { agents } from "../../utils/constants";
 
-export default function AgentRadioCardList({ setAgent }) {
+export default function AgentRadioCardList({ agent, setAgent }) {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "agent",
-    defaultValue: "viper",
+    defaultValue: agent,
     onChange: (value) => {
       setAgent(value);
       console.log(`AGENT SET TO: ${value}`);

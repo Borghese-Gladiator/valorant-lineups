@@ -37,7 +37,7 @@ export default function GameForm() {
           Map
         </Heading>
         <Box p={1}>
-          <MapRadioCardList setMap={setMap} />
+          <MapRadioCardList map={gameData.map} setMap={setMap} setSite={setSiteData} />
         </Box>
       </GridItem>
       <GridItem colSpan={1}>
@@ -45,7 +45,7 @@ export default function GameForm() {
           Position
         </Heading>
         <Box p={1}>
-          <AttackDefenseRadioBtns setAttackDefense={setAttackDefense} attackDefense={gameData.attackDefense} />
+          <AttackDefenseRadioBtns attackDefense={gameData.attackDefense} setAttackDefense={setAttackDefense} />
         </Box>
       </GridItem>
       <GridItem colSpan={1}>
@@ -53,7 +53,7 @@ export default function GameForm() {
           Site
         </Heading>
         <Box p={1}>
-          <SiteRadioCardList map={gameData.map} setSite={setSite} />
+          <SiteRadioCardList site={siteData} map={gameData.map} setSite={setSite} />
         </Box>
       </GridItem>
       <GridItem colSpan={2}>
@@ -61,7 +61,7 @@ export default function GameForm() {
           Agents
         </Heading>
         <Box p={1}>
-          <AgentRadioCardList setAgent={setAgent} />
+          <AgentRadioCardList agent={gameData.agent} setAgent={setAgent} />
         </Box>
       </GridItem>
     </Grid>
