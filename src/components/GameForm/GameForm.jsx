@@ -53,7 +53,7 @@ export default function GameForm() {
           Site
         </Heading>
         <Box p={1}>
-          <SiteRadioCardList site={siteData} map={gameData.map} setSite={setSite} />
+          <SiteRadioCardList attackDefense={gameData.attackDefense} site={siteData} map={gameData.map} setSite={setSite} />
         </Box>
       </GridItem>
       <GridItem colSpan={2}>
