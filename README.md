@@ -97,8 +97,11 @@ There is poor integration between Next.js + Material UI (react component library
         - solve temporarily by removing ESLint
 
 ## Screenshots Source
-- Viper lineups
+- Viper Lineups
   - Unidaro - https://www.youtube.com/channel/UCFWmMq1_tLA5Ymb3Qa20w7Q
+    - great post plants
+  - Brush - https://www.youtube.com/channel/UCJpFhHKBBbuTZ0X64RQt8cQ
+    - great attacking smokes
   - SkillCapped - https://www.youtube.com/channel/UCre4LlH_zPpgeUVvBGCMqcA
     - about half were actually suboptimal and rewritten with Unidaro's lineups (don't remember which anymore)
   - FluxRevived - https://www.youtube.com/channel/UC5pOxttTGwCR5CpFS6KcZIw
